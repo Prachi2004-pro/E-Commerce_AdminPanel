@@ -3,7 +3,6 @@ import './AddProduct.css'
 import upload_area from '../../assets/upload_area.svg'
 
 const AddProduct = () => {
-
     const [image,setImage] = useState(false);
     const imageHandler = (e) => {
         setImage(e.target.files[0]);
@@ -28,7 +27,7 @@ const AddProduct = () => {
         let formData = new FormData();
         formData.append('product',image);
 
-        await fetch('http://localhost:4000/upload',{
+        await fetch('https://e-commerce-backend-59ko.onrender.com/upload',{
             method:'POST',
             headers:{
                 Accept:'application/json',
@@ -38,9 +37,10 @@ const AddProduct = () => {
 
         if(responseData.success)
         {
+            console.log(responseData)
             products.image = responseData.image_url;
             console.log(products);
-            await fetch('http://localhost:4000/addproduct',{
+            await fetch('https://e-commerce-backend-59ko.onrender.com/addproduct',{
                 method:'POST',
                 headers:{
                     Accept: 'application/json',
